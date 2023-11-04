@@ -13,9 +13,14 @@ class CoursesController < ApplicationController
   end
 
   def create
+    pp("--------HERE------------")
+    pp(request.POST)
+    pp(params)
+    pp("--------HERE------------")
+
     @course = Course.new
     @course.title = params.fetch("query_title")
-    @course.term_offered = params.fetch("query_term_")
+    @course.term_offered = params.fetch("query_term")
     @course.department_id = params.fetch("query_department_id")
 
     if @course.valid?
@@ -24,6 +29,7 @@ class CoursesController < ApplicationController
     else
       redirect_to("/courses", { :notice => "Course failed to create successfully." })
     end
+
   end
 
   def update
